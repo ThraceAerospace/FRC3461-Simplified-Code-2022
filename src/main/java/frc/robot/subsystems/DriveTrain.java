@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -25,7 +24,7 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   public DriveTrain() {
 
-    //SmartDashboard.putData(this);
+    
     dtBottomLeft.follow(dtTopLeft);
     dtBottomLeft.setInverted(true);
     dtBottomLeft.setInverted(InvertType.FollowMaster);

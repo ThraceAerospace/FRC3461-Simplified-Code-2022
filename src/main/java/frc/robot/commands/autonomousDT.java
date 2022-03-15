@@ -14,8 +14,6 @@ public class autonomousDT extends CommandBase {
     private final Shooter shooter;
     private final DriveTrain driveTrain;
     private final Tower ballHandler;
-    private final RobotContainer container;
-  
     private double timer = Timer.getFPGATimestamp();
     private boolean isfinished = false;
 
@@ -24,7 +22,6 @@ public class autonomousDT extends CommandBase {
     this.driveTrain = driveTrain;
     this.shooter = shooter;
     this.ballHandler = intake;;
-    this.container = container;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain, ballHandler);
   }
@@ -70,7 +67,7 @@ public class autonomousDT extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setShooterSpeed(0);
+    shooter.setFlywheelSpeed(0);
     ballHandler.stop();
   }
 

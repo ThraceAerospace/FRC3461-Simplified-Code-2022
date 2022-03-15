@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
     hoodMotor.set(speed);
   }
 
-  public void setShooterSpeed(double speed) {
+  public void setFlywheelSpeed(double speed) {
 
   }
 
