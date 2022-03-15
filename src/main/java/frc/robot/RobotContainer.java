@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import javax.print.attribute.standard.PrinterURI;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -43,6 +41,7 @@ public class RobotContainer {
  //Commands
  //private final DashboardManager dash = new DashboardManager();
  private final teleopDT dtTeleop = new teleopDT(driveTrain, this);
+ private final autonomousDT dtAutonomous = new autonomousDT(driveTrain, shooter, tower, this);
  private final TowerManager towerManager = new TowerManager(tower, this);
  private final ManualClimb manualClimb = new ManualClimb(climber, this);
  
@@ -67,7 +66,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return dtAutonomous;
   }
 
 
