@@ -39,33 +39,32 @@ public class autonomousDT extends CommandBase {
   @Override
   public void execute() {
    double time = Timer.getFPGATimestamp() - timer;
-  //   if(time < 1.1){
-  //     driveTrain.percentDrive(0.5, 0.5);
-  //     ballHandler.armsDown();
-  //     ballHandler.setIntake(1);
-  //     ballHandler.setTraversal(1);
-  //   } else if (time < 1.6){
-  //     ballHandler.armsUp();
-  //     ballHandler.setAll(0);
-  //     driveTrain.percentDrive(-0.5, 0.5);
-  //   } else if (time < 2){
-  //     driveTrain.percentDrive(0, 0);
-  //     // turret.turretRotations(-0.4);
-  //   } else {
-  //     driveTrain.percentDrive(0, 0);
-  //     isfinished = true;
-  //   }
-  // }
-
-  shooter.setShooterSpeed(3500); //todo PID Loop
-  shooter.setHoodSpeed(80); //todo Make this an angle converter
+    if(time < 1.1){
+      driveTrain.percentDrive(0.5, 0.5);
+      ballHandler.armsDown();
+      ballHandler.intake();
+    } else if (time < 1.6){
+      Tower.armsUp();
+      ballHandler.stop();
+      driveTrain.percentDrive(-0.5, 0.5);
+    } else if (time < 2){
+      driveTrain.percentDrive(0, 0);
+      // turret.turretRotations(-0.4);
+    } else {
+      driveTrain.percentDrive(0, 0);
+      isfinished = true;
+    }
    
-  if (time > 3) {
-    ballHandler.intake();
-  }
-  if (time > 8) {
-    isfinished = true;
-  }
+
+  //shooter.setShooterSpeed(3500); //todo PID Loop
+  //shooter.setHoodSpeed(80); //todo Make this an angle converter
+   
+  // if (time > 3) {
+  //   ballHandler.intake();
+  // }
+  // if (time > 8) {
+  //   isfinished = true;
+  // }
 }
 
   // Called once the command ends or is interrupted.

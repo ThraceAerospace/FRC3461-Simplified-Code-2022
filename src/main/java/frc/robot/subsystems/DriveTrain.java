@@ -25,7 +25,7 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   public DriveTrain() {
 
-
+    //SmartDashboard.putData(this);
     dtBottomLeft.follow(dtTopLeft);
     dtBottomLeft.setInverted(true);
     dtBottomLeft.setInverted(InvertType.FollowMaster);
@@ -40,6 +40,7 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
     dDrive.feed();
 
   }
@@ -50,10 +51,13 @@ public class DriveTrain extends SubsystemBase {
      * @param lSpeed left side power percentage
      */
     public void percentDrive(double rSpeed, double lSpeed) {
-      SmartDashboard.putNumber("left speed", lSpeed);
-      SmartDashboard.putNumber("right speed", rSpeed);
-      dtTopLeft.set(ControlMode.PercentOutput, lSpeed);
-      dtTopRight.set(ControlMode.PercentOutput, rSpeed);
+      SmartDashboard.putNumber("DT left speed", lSpeed);
+      SmartDashboard.putNumber("DT right speed", rSpeed); 
+      //dtTopLeft.set(ControlMode.PercentOutput, lSpeed);
+      //dtTopRight.set(ControlMode.PercentOutput, rSpeed);
+
+      dDrive.tankDrive(lSpeed, rSpeed);;
+
       dDrive.feed(); //keep the wpilib arcade drive that we need for auto from freaking out
   }
 }
