@@ -67,7 +67,7 @@ public class autonomousDT extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setFlywheelSpeed(0);
+    shooter.setNumericalSpeed(0);
     ballHandler.stop();
   }
 

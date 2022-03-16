@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,6 +36,8 @@ public class RobotContainer {
  private final Joystick operatorJoystick = new Joystick(1);
  private final Joystick climberJoystick = new Joystick(2);
 
+ private final JoystickButton layupButton = new JoystickButton(operatorJoystick, 2);
+
  //Subsystems
  private final DriveTrain driveTrain = new DriveTrain();
  private final Shooter shooter = new Shooter();
@@ -47,6 +50,7 @@ public class RobotContainer {
  private final autonomousDT dtAutonomous = new autonomousDT(driveTrain, shooter, tower, this);
  private final TowerManager towerManager = new TowerManager(tower, this);
  private final ManualClimb manualClimb = new ManualClimb(climber, this);
+ private final LayupShot layupShot = new LayupShot(shooter);
  
 
   /**
@@ -60,6 +64,9 @@ public class RobotContainer {
    driveTrain.setDefaultCommand(dtTeleop);
    tower.setDefaultCommand(towerManager);
    climber.setDefaultCommand(manualClimb);
+
+   layupButton.whileHeld(layupShot);
+
   }
 
   /**

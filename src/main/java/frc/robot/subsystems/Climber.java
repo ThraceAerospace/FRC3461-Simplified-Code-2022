@@ -18,8 +18,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Climber extends SubsystemBase {
   private WPI_TalonFX liftMasterController = new WPI_TalonFX(MIDDLE_WINCH_TOP_PORT); 
   private WPI_TalonFX liftSlaveController = new WPI_TalonFX(MIDDLE_WINCH_BOTTOM_PORT);
-  //private DoubleSolenoid  leftArmWhich = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 4, 5);
-    //private DoubleSolenoid secondaryArmSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 6, 7);
   private WPI_TalonFX armWinch = new WPI_TalonFX(ARM_PORT);
 
   private final DoubleSolenoid armBrake = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 5, 4);
@@ -54,18 +52,6 @@ public class Climber extends SubsystemBase {
   public Value brakeState() {
     return armBrake.get();
   }
-
-  // public void extendArm(){
-  //   armWinch.set(1);
-  // }
-
-  // public void retractArm(){
-  //   armWinch.set(-1);
-  // }
-
-  // public void stopArm() {
-  //   armWinch.set(0);
-  // }
 
   @Override
   public void periodic() {

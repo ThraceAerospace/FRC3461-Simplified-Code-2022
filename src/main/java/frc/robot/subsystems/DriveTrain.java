@@ -7,8 +7,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.DriveTrain.*;
@@ -20,6 +22,9 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonFX dtTopRight= new WPI_TalonFX(RIGHT_TOP_PORT);
   private final WPI_TalonFX dtBottomRight= new WPI_TalonFX(RIGHT_BOTTOM_PORT);
   private final DifferentialDrive dDrive = new DifferentialDrive(dtTopLeft, dtTopRight);
+  private final DoubleSolenoid shifter = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 0,1);
+
+  
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -32,6 +37,8 @@ public class DriveTrain extends SubsystemBase {
     dtBottomRight.follow(dtTopRight);
     dtBottomRight.setInverted(false);
     dtBottomRight.setInverted(InvertType.FollowMaster);
+
+    shifter.set(Value.kReverse);
 
   }
 
@@ -49,9 +56,7 @@ public class DriveTrain extends SubsystemBase {
      * @param rSpeed right side power percentage
      * @param lSpeed left side power percentage
      */
-    public void percentDrive(double rSpeed, double lSpeed) {
-      SmartDashboard.putNumber("DT left speed", lSpeed);
-      SmartDashboard.putNumber("DT right speed", rSpeed); 
+    public void percentDrive(double rSpeed, double lSpeed) { 
       //dtTopLeft.set(ControlMode.PercentOutput, lSpeed);
       //dtTopRight.set(ControlMode.PercentOutput, rSpeed);
 
